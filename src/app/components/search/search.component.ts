@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SpotifyService } from 'src/app/services/spotify.service';
 
 @Component({
   selector: 'app-search',
@@ -6,5 +7,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent {
+  constructor(private spotify: SpotifyService){
+
+  }
+
+  buscar(termino: string){
+    console.log(termino);
+    this.spotify.getArtista(termino)
+      .subscribe( data =>{
+        console.log(data)
+      })
+  }
 
 }

@@ -1,1 +1,16 @@
-<p>home works!</p>
+<div class="row row-cols-1 row-cols-md-4 g-4">
+    <div *ngFor="let cancion of nuevasCanciones" class="col">
+        <div class="card">
+        <img [src]="cancion.images[0].url" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title"> {{ cancion.name }}</h5>
+            <p class="card-text">
+                <span *ngFor="let artista of cancion.artists" class="badge rounded-pill text-bg-primary">
+                    {{artista.name }}
+                </span>
+            </p>
+            <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+        </div>
+        </div>
+    </div>
+</div>
