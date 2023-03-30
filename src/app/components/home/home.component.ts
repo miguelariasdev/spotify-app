@@ -8,14 +8,24 @@ import { SpotifyService } from 'src/app/services/spotify.service';
 })
 export class HomeComponent {
   nuevasCanciones: any[] = [];
+  loading: boolean;
+  errorMessage: string = "";
+
+  error: boolean = false;
 
   constructor (private spotify: SpotifyService ) {
 
+    this.loading = true;
+    this.error = false;
+
     this.spotify.getNewReleases()
       .subscribe( (data:any) =>{
-        console.log(data.albums.items);
-        this.nuevasCanciones = data.albums.items;
-        
+        this.loading= false;
+        this.nuevasCanciones = data;
+      }, (errorServicio) => {
+        this.error = true;
+        this.loading = false;
+        this.errorMessage = errorServicio.error.error.message;
       })
   }
 }
